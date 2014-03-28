@@ -52,7 +52,7 @@
 } %}
 
 {% if 'settings_table' in pillar %}
-    {% set pkgs = pillar['settings_table'] %}
+    {% set saltvars = pillar['settings_table'] %}
 {% elif grains['os'] in settings_table %}
-    {% set pkgs = settings_table[grains['os']] %}
+    {% set saltvars = settings_table[grains['os']] %}
 {% endif %}
