@@ -1,4 +1,4 @@
-{% from "salt/package-map.jinja" import pkgs with context %}
+{% from "salt/salt-map.jinja" import pkgs with context %}
 
 salt-minion:
   pkg.installed:
