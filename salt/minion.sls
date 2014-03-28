@@ -1,14 +1,15 @@
-{% from "salt/salt-map.jinja" import pkgs with context %}
+{% from "salt/salt-map.jinja" import saltvars with context %}
 
 salt-minion:
   pkg.installed:
-    - name: {{ pkgs['salt-minion'] }}
+    - name: {{ saltvars['salt-minion'] }}
   file.managed:
-    - name: /etc/salt/minion
+    - name: {{ saltvars['conf_dir'] }}/minion
     - template: jinja
     - source: salt://salt/files/minion
   service.running:
     - enable: True
+    - name: {{ saltvars['service-minion'] }}
     - watch:
       - pkg: salt-minion
       - file: salt-minion

@@ -1,14 +1,15 @@
-{% from "salt/salt-map.jinja" import pkgs with context %}
+{% from "salt/salt-map.jinja" import saltvars with context %}
 
 salt-master:
   pkg.installed:
-    - name: {{ pkgs['salt-master'] }}
+    - name: {{ saltvars['salt-master'] }}
   file.managed:
-    - name: /etc/salt/master
+    - name: {{ saltvars['conf_dir'] }}/master
     - template: jinja
     - source: salt://salt/files/master
   service.running:
     - enable: True
+    - name: {{ saltvars['service-master'] }}
     - watch:
       - pkg: salt-master
       - file: salt-master

@@ -1,24 +1,58 @@
-{% set package_table = {
+{% set settings_table = {
     'Debian': {'salt-master': 'salt-master',
-               'salt-minion': 'salt-minion'},
+               'salt-minion': 'salt-minion',
+               'service-master': 'salt-master',
+               'service-minion': 'salt-minion',
+               'conf_dir': '/etc/salt'},
     'Ubuntu': {'salt-master': 'salt-master',
-               'salt-minion': 'salt-minion'},
+               'salt-minion': 'salt-minion',
+               'service-master': 'salt-master',
+               'service-minion': 'salt-minion',
+               'conf_dir': '/etc/salt'},
     'CentOS': {'salt-master': 'salt-master',
-               'salt-minion': 'salt-minion'},
+               'salt-minion': 'salt-minion',
+               'service-master': 'salt-master',
+               'service-minion': 'salt-minion',
+               'conf_dir': '/etc/salt'},
     'Amazon': {'salt-master': 'salt-master',
-               'salt-minion': 'salt-minion'},
+               'salt-minion': 'salt-minion',
+               'service-master': 'salt-master',
+               'service-minion': 'salt-minion',
+               'conf_dir': '/etc/salt'},
     'Fedora': {'salt-master': 'salt-master',
-               'salt-minion': 'salt-minion'},
+               'salt-minion': 'salt-minion',
+               'service-master': 'salt-master',
+               'service-minion': 'salt-minion',
+               'conf_dir': '/etc/salt'},
     'RedHat': {'salt-master': 'salt-master',
-               'salt-minion': 'salt-minion'},
+               'salt-minion': 'salt-minion',
+               'service-master': 'salt-master',
+               'service-minion': 'salt-minion',
+               'conf_dir': '/etc/salt'},
     'Gentoo': {'salt-master': 'app-admin/salt',
-               'salt-minion': 'app-admin/salt'},
+               'salt-minion': 'app-admin/salt',
+               'service-master': 'salt-master',
+               'service-minion': 'salt-minion',
+               'conf_dir': '/etc/salt'},
     'Arch':   {'salt-master': 'salt',
-               'salt-minion':  'salt'}
+               'salt-minion':  'salt',
+               'service-master': 'salt-master',
+               'service-minion': 'salt-minion',
+               'conf_dir': '/etc/salt'},
+    'FreeBSD': {'salt-master': 'py27-salt',
+                'salt-minion': 'py27-salt',
+                'service-master': 'salt_master',
+                'service-minion': 'salt_minion',
+                'conf_dir': '/usr/local/etc'},
+    'OpenBSD': {'salt-master': 'salt',
+                'salt-minion': 'salt',
+                'service-master': 'salt_master',
+                'service-minion': 'salt_minion',
+                'conf_dir': '/etc/salt'}
 } %}
 
-{% if 'package_table' in pillar %}
-    {% set pkgs = pillar['package_table'] %}
-{% elif grains['os'] in package_table %}
-    {% set pkgs = package_table[grains['os']] %}
+{% if 'settings_table' in pillar %}
+    {% set pkgs = pillar['settings_table'] %}
+{% elif grains['os'] in settings_table %}
+    {% set pkgs = settings_table[grains['os']] %}
 {% endif %}
